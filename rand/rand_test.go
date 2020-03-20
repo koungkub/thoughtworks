@@ -5,17 +5,17 @@ import "testing"
 func TestRandomNumber(t *testing.T) {
 
 	tt := []struct {
-		max    int
-		min    int
-		number int
+		max int
+		min int
 	}{
-		{3, 0, 0},
+		{3, 0},
+		{5, 2},
 	}
 
 	for _, tc := range tt {
 		number := RandomNumber(tc.max, tc.min)
-		if tc.number != number {
-			t.Errorf("%v should be in range [%v, %v]", tc.number, tc.min, tc.max)
+		if number < tc.min || number >= tc.max {
+			t.Errorf("%v should be in range [%v, %v]", number, tc.min, tc.max)
 		}
 	}
 }
