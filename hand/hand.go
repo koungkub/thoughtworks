@@ -13,6 +13,7 @@ const (
 	Close = `C`
 )
 
+// ValidatePredictor : validate predictor input
 func ValidatePredictor(pattern string) error {
 
 	validate := regexp.MustCompile(`^[CO][CO][0-4]$`)
