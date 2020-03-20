@@ -17,18 +17,15 @@ const (
 // if predictor is false return `%s%s` pattern
 func RandomHands(isPredictor bool) string {
 
-	max, min := 2, 0
-
 	if isPredictor {
-		return fmt.Sprintf("%v%v%v", RandomHand(RandomNumber(max, min)), RandomHand(RandomNumber(max, min)), RandomNumber(max, min))
+		return fmt.Sprintf("%v%v%v", RandomHand(RandomNumber(Max, Min)), RandomHand(RandomNumber(Max, Min)), RandomNumber(Max, Min))
 	}
-
-	return fmt.Sprintf("%v%v", RandomHand(RandomNumber(max, min)), RandomHand(RandomNumber(max, min)))
+	return fmt.Sprintf("%v%v", RandomHand(RandomNumber(Max, Min)), RandomHand(RandomNumber(Max, Min)))
 }
 
 // RandomHand : random hand as 'O' is open, 'C' is close
 func RandomHand(seed int) string {
-	return []string{"O", "C"}[seed]
+	return []string{"O", "C"}[seed%2]
 }
 
 // RandomNumber : random number in range [min, max]
