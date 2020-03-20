@@ -1,12 +1,12 @@
 package main
 
 import (
-	"math/rand"
+	random "math/rand"
 	"time"
 )
 
 func init() {
-	rand.Seed(time.Now().UnixNano())
+	random.Seed(time.Now().UnixNano())
 }
 
 func main() {
