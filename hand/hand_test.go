@@ -19,7 +19,7 @@ func TestValidatePredictorSuccess(t *testing.T) {
 	for _, tc := range tt {
 		err := ValidatePredictor(tc.pattern)
 		if err != nil {
-			t.Errorf("%v should be error; error message %v", tc.pattern, err.Error())
+			t.Errorf("%v should not error; error message %v", tc.pattern, err.Error())
 		}
 	}
 }
