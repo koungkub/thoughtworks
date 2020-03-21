@@ -13,6 +13,17 @@ const (
 	Close = `C`
 )
 
+func ValidateNotPredictor(pattern string) error {
+
+	validate := regexp.MustCompile(`^[CO][CO]$`)
+
+	if match := validate.MatchString(pattern); !match {
+		return errors.New("invalid input")
+	}
+
+	return nil
+}
+
 // ValidatePredictor : validate predictor input
 func ValidatePredictor(pattern string) error {
 
