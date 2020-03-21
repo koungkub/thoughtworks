@@ -4,6 +4,27 @@ import (
 	"testing"
 )
 
+func TestCountOpen(t *testing.T) {
+
+	tt := []struct {
+		predictor    string
+		notPredictor string
+		totalOpen    int
+	}{
+		{"OO2", "OO", 4},
+		{"CC1", "CC", 0},
+		{"CO", "CC", 1},
+		{"OC", "OC", 2},
+	}
+
+	for _, tc := range tt {
+		total := CountOpen(tc.predictor, tc.notPredictor)
+		if total != tc.totalOpen {
+			t.Errorf("%v and %v should be %v", tc.predictor, tc.notPredictor, tc.totalOpen)
+		}
+	}
+}
+
 func TestValidate(t *testing.T) {
 
 	tt := []struct {
