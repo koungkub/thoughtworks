@@ -5,6 +5,7 @@ import (
 	"regexp"
 )
 
+// Validate : validate pattern base on isPredictor flag
 func Validate(isPredictor bool, pattern string) error {
 
 	if isPredictor {
@@ -20,6 +21,7 @@ func Validate(isPredictor bool, pattern string) error {
 	return nil
 }
 
+// ValidateNotPredictor : validate not predictor input
 func ValidateNotPredictor(pattern string) error {
 
 	validate := regexp.MustCompile(`^[CO][CO]$`)
