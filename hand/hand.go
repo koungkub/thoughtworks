@@ -5,13 +5,20 @@ import (
 	"regexp"
 )
 
-const (
-	// Open : represent Open as 'O'
-	Open = `O`
+func Validate(isPredictor bool, pattern string) error {
 
-	// Close : represent Close as 'C'
-	Close = `C`
-)
+	if isPredictor {
+		if err := ValidatePredictor(pattern); err != nil {
+			return err
+		}
+		return nil
+	}
+
+	if err := ValidateNotPredictor(pattern); err != nil {
+		return err
+	}
+	return nil
+}
 
 func ValidateNotPredictor(pattern string) error {
 
