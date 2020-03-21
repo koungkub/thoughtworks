@@ -4,6 +4,30 @@ import (
 	"testing"
 )
 
+func TestValidate(t *testing.T) {
+
+	tt := []struct {
+		pattern     string
+		isPredictor bool
+	}{
+		{"CO2", true},
+		{"CO1", true},
+		{"CO", false},
+		{"", false},
+		{"CC", false},
+		{"CAC", false},
+	}
+
+	for _, tc := range tt {
+		err := Validate(tc.isPredictor, tc.pattern)
+		if err != nil {
+			if tc.isPredictor {
+				t.Errorf("%v should error; predictor status is %v", tc.pattern, tc.isPredictor)
+			}
+		}
+	}
+}
+
 func TestValidateNotPredictorFailure(t *testing.T) {
 
 	tt := []struct {
