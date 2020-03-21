@@ -4,6 +4,47 @@ import (
 	"testing"
 )
 
+func TestValidateNotPredictorFailure(t *testing.T) {
+
+	tt := []struct {
+		pattern string
+	}{
+		{"OO1"},
+		{"CO2"},
+		{"OC3"},
+		{"CC3"},
+		{""},
+		{"HEN"},
+		{"12"},
+	}
+
+	for _, tc := range tt {
+		err := ValidateNotPredictor(tc.pattern)
+		if err == nil {
+			t.Errorf("%v should error", tc.pattern)
+		}
+	}
+}
+
+func TestValidateNotPredictorSuccess(t *testing.T) {
+
+	tt := []struct {
+		pattern string
+	}{
+		{"OO"},
+		{"CO"},
+		{"OC"},
+		{"CC"},
+	}
+
+	for _, tc := range tt {
+		err := ValidateNotPredictor(tc.pattern)
+		if err != nil {
+			t.Errorf("%v should error; errror message %v", tc.pattern, err.Error())
+		}
+	}
+}
+
 func TestValidatePredictorFailure(t *testing.T) {
 
 	tt := []struct {
