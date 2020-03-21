@@ -4,6 +4,30 @@ import (
 	"testing"
 )
 
+func TestCompare(t *testing.T) {
+
+	tt := []struct {
+		predictor    string
+		notPredictor string
+		isWon        bool
+		ans          int
+	}{
+		{"CC3", "OO", false, 2},
+		{"CO2", "CC", false, 1},
+		{"OO2", "CC", true, 2},
+		{"OC3", "OO", true, 3},
+	}
+
+	for _, tc := range tt {
+		err := Compare(tc.predictor, tc.notPredictor)
+		if err != nil {
+			if tc.isWon {
+				t.Errorf("%v and %v should be %v", tc.predictor, tc.notPredictor, tc.ans)
+			}
+		}
+	}
+}
+
 func TestCountOpen(t *testing.T) {
 
 	tt := []struct {
