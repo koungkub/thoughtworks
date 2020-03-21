@@ -18,7 +18,7 @@ func ValidatePredictor(pattern string) error {
 
 	validate := regexp.MustCompile(`^[CO][CO][0-4]$`)
 
-	if match := validate.MatchString("CC0"); !match {
+	if match := validate.MatchString(pattern); !match {
 		return errors.New("invalid input")
 	}
 
