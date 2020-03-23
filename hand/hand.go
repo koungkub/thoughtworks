@@ -14,16 +14,18 @@ const (
 )
 
 // Compare : compare hand and check predictor is predic success or failure
-func Compare(predictor, notPredictor string) error {
+func Compare(patterns ...string) error {
 
-	ans, err := strconv.Atoi(string(predictor[2]))
-	if err != nil {
-		return err
+	var openHand, predicNumber int
+	for _, pattern := range patterns {
+		openHand += countOpen(pattern)
+		if err := validatePredictor(pattern); err == nil {
+			predicNumber, _ = strconv.Atoi(string(pattern[2]))
+		}
 	}
 
-	openHand := countOpen(predictor, notPredictor)
-	if openHand != ans {
-		return errors.New("predictor is invalid")
+	if openHand != predicNumber {
+		return errors.New("prediction is invalid")
 	}
 
 	return nil
@@ -57,22 +59,30 @@ func Validate(isPredictor bool, pattern string) error {
 
 func validateNotPredictor(pattern string) error {
 
-	validate := regexp.MustCompile(`^[CO][CO]$`)
-
-	if match := validate.MatchString(pattern); !match {
-		return errors.New("invalid input")
+	if match, _ := regexp.MatchString(`^[CO][CO]$`, pattern); match {
+		return nil
 	}
 
-	return nil
+	if match, _ := regexp.MatchString(`^[CO][CO].$`, pattern); match {
+		return errors.New("Bad input: no prediction expected, you are not the predictor")
+	}
+
+	return errors.New("Bad input: correct input should be the form __ (ex: CC, CO) first two letters indicate [O]pen or [C]losed state for each hand")
 }
 
 func validatePredictor(pattern string) error {
 
-	validate := regexp.MustCompile(`^[CO][CO][0-4]$`)
-
-	if match := validate.MatchString(pattern); !match {
-		return errors.New("invalid input")
+	if match, _ := regexp.MatchString(`^[CO][CO][0-4]$`, pattern); match {
+		return nil
 	}
 
-	return nil
+	if match, _ := regexp.MatchString(`^[CO][CO].$`, pattern); match {
+		return errors.New("Bad input: prediction should be in the range of 0-4")
+	}
+
+	if match, _ := regexp.MatchString(`^..[0-4]$`, pattern); match {
+		return errors.New("Bad input: first two charactor should be [O]pen or [C]losed")
+	}
+
+	return errors.New("Bad input: correct input should be the form ___ (ex: CC1, CO3) first two letters indicate [O]pen or [C]losed state for each hand followed by the prediction (0-4)")
 }
