@@ -2,6 +2,7 @@ package io
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 )
@@ -18,12 +19,13 @@ func Turn(predictor bool) string {
 	return "AI is the predictor, what is your input ?"
 }
 
-func Scan() string {
+func Scan(pattern string) string {
 
 	input := bufio.NewReader(os.Stdin)
 
+	fmt.Print(pattern)
 	txt, _ := input.ReadString('\n')
 	txt = strings.Replace(txt, "\n", "", -1)
 
-	return txt
+	return strings.ToUpper(txt)
 }
