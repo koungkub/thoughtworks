@@ -5,10 +5,10 @@ import (
 	random "math/rand"
 	"time"
 
-	"github.com/koungkub/thw/rand"
+	"github.com/koungkub/thoughtworks/rand"
 
-	"github.com/koungkub/thw/hand"
-	"github.com/koungkub/thw/io"
+	"github.com/koungkub/thoughtworks/hand"
+	"github.com/koungkub/thoughtworks/io"
 )
 
 func init() {
