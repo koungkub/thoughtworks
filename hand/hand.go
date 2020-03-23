@@ -13,6 +13,7 @@ const (
 	Open = `O`
 )
 
+// ToggleState : toggle perdictor state
 func ToggleState(state bool) bool {
 	return !state
 }
