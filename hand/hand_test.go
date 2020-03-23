@@ -4,23 +4,6 @@ import (
 	"testing"
 )
 
-func TestToggleState(t *testing.T) {
-
-	tt := []struct {
-		state bool
-	}{
-		{true},
-		{false},
-	}
-
-	for _, tc := range tt {
-		state := ToggleState(tc.state)
-		if state != !tc.state {
-			t.Errorf("%v should be %v", state, !state)
-		}
-	}
-}
-
 func TestCompare(t *testing.T) {
 
 	tt := []struct {
