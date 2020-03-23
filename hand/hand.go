@@ -44,20 +44,19 @@ func CountOpen(patterns ...string) int {
 func Validate(isPredictor bool, pattern string) error {
 
 	if isPredictor {
-		if err := ValidatePredictor(pattern); err != nil {
+		if err := validatePredictor(pattern); err != nil {
 			return err
 		}
 		return nil
 	}
 
-	if err := ValidateNotPredictor(pattern); err != nil {
+	if err := validateNotPredictor(pattern); err != nil {
 		return err
 	}
 	return nil
 }
 
-// ValidateNotPredictor : validate not predictor input
-func ValidateNotPredictor(pattern string) error {
+func validateNotPredictor(pattern string) error {
 
 	validate := regexp.MustCompile(`^[CO][CO]$`)
 
@@ -68,8 +67,7 @@ func ValidateNotPredictor(pattern string) error {
 	return nil
 }
 
-// ValidatePredictor : validate predictor input
-func ValidatePredictor(pattern string) error {
+func validatePredictor(pattern string) error {
 
 	validate := regexp.MustCompile(`^[CO][CO][0-4]$`)
 

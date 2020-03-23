@@ -88,7 +88,7 @@ func TestValidateNotPredictorFailure(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		err := ValidateNotPredictor(tc.pattern)
+		err := validateNotPredictor(tc.pattern)
 		if err == nil {
 			t.Errorf("%v should error", tc.pattern)
 		}
@@ -107,7 +107,7 @@ func TestValidateNotPredictorSuccess(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		err := ValidateNotPredictor(tc.pattern)
+		err := validateNotPredictor(tc.pattern)
 		if err != nil {
 			t.Errorf("%v should error; errror message %v", tc.pattern, err.Error())
 		}
@@ -133,7 +133,7 @@ func TestValidatePredictorFailure(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		err := ValidatePredictor(tc.pattern)
+		err := validatePredictor(tc.pattern)
 		if err == nil {
 			t.Errorf("%v should error", tc.pattern)
 		}
@@ -153,7 +153,7 @@ func TestValidatePredictorSuccess(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		err := ValidatePredictor(tc.pattern)
+		err := validatePredictor(tc.pattern)
 		if err != nil {
 			t.Errorf("%v should not error; error message %v", tc.pattern, err.Error())
 		}
