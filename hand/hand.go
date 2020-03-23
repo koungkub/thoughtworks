@@ -13,6 +13,10 @@ const (
 	Open = `O`
 )
 
+func ToggleState(state bool) bool {
+	return !state
+}
+
 // Compare : compare hand and check predictor is predic success or failure
 func Compare(patterns ...string) error {
 
