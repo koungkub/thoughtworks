@@ -42,7 +42,7 @@ func TestCountOpen(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		total := CountOpen(tc.predictor, tc.notPredictor)
+		total := countOpen(tc.predictor, tc.notPredictor)
 		if total != tc.totalOpen {
 			t.Errorf("%v and %v should be %v", tc.predictor, tc.notPredictor, tc.totalOpen)
 		}

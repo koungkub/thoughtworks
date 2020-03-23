@@ -21,7 +21,7 @@ func Compare(predictor, notPredictor string) error {
 		return err
 	}
 
-	openHand := CountOpen(predictor, notPredictor)
+	openHand := countOpen(predictor, notPredictor)
 	if openHand != ans {
 		return errors.New("predictor is invalid")
 	}
@@ -29,8 +29,7 @@ func Compare(predictor, notPredictor string) error {
 	return nil
 }
 
-// CountOpen : counter open ('O') in hand
-func CountOpen(patterns ...string) int {
+func countOpen(patterns ...string) int {
 
 	var counter int
 	for _, pattern := range patterns {
